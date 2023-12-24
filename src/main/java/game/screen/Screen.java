@@ -20,7 +20,6 @@ public class Screen {
 			this.pausa(100);
 			System.out.print("\033[H\033[2J");  
 			
-			
 		}
 	}
 	public void pausa(int tempo) {
