@@ -16,7 +16,6 @@ public class Board {
 				tabua[i][j] = charactere;
 			}
 		}
-		
 	}
 	
 	public char[][] getTabua() {
