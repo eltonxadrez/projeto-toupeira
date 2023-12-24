@@ -19,7 +19,7 @@ public class Screen {
 //			System.out.print("\r");  
 			this.pausa(100);
 			System.out.print("\033[H\033[2J");  
-			
+			//teste
 			
 		}
 	}
