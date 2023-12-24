@@ -14,7 +14,6 @@ public class Board {
 		for (int i = 0; i < tabua.length; i++) {
 			for (int j = 0; j < tabua.length; j++) {
 				tabua[i][j] = charactere;
-//				System.out.println(i+j);
 			}
 		}
 		
