@@ -1,11 +1,13 @@
 package game.controller.thread;
 
+import java.io.IOException;
+
 import game.controller.Keyboard;
 import lc.kra.system.keyboard.GlobalKeyboardHook;
 import lc.kra.system.keyboard.event.GlobalKeyEvent;
 import lc.kra.system.keyboard.event.GlobalKeyListener;
 
-public class KeyboardThread extends Thread implements GlobalKeyListener  {
+public class KeyboardThread extends Thread {
 	
 	//37 [down]
 	//37 [up]
@@ -18,13 +20,15 @@ public class KeyboardThread extends Thread implements GlobalKeyListener  {
 	
 	private boolean rawInput;
 	private GlobalKeyboardHook keyboardHook; 
-	private Keyboard keyboard;
+	private Keyboard keyboard = new Keyboard();
 	
-	private boolean direita = false;
+//	private boolean direita = false;
+	
+	private Integer keyPressed = 0;
 	
 	public void run() {
 		
-		iniciar();
+//		iniciar();
 		
 		keyboardHook.addKeyListener(keyboard);
 		
@@ -42,9 +46,22 @@ public class KeyboardThread extends Thread implements GlobalKeyListener  {
 		
 		while(true) { 
 			
-			if(this.keyboard.isDireita()) {
-				System.out.print("direita");
-			}
+//			switch (keyboard.teclaApertada) {
+//			case 39:
+//				System.out.println("direita pressed");
+//				this.cls();
+//				break;
+//
+//			default:
+////				keyPressed = 0;
+////				System.out.println("nada");
+////				this.cls();
+////				break;
+//			}
+			
+//			if(this.keyboard.isDireita()) {
+//				System.out.print("direita");
+//			}
 //			else if(!this.tecladoAdapter.isDireita()) {
 //				System.out.print("direita off");
 //			}
@@ -75,17 +92,17 @@ public class KeyboardThread extends Thread implements GlobalKeyListener  {
 		this.rawInput = rawInput;
 	}
 
-	@Override
-	public void keyPressed(GlobalKeyEvent event) {
-		System.out.println(event);
-		
-	}
-
-	@Override
-	public void keyReleased(GlobalKeyEvent event) {
-		// TODO Auto-generated method stub
-		
-	}
+//	@Override
+//	public void keyPressed(GlobalKeyEvent event) {
+//		System.out.println(event);
+//		
+//	}
+//
+//	@Override
+//	public void keyReleased(GlobalKeyEvent event) {
+//		// TODO Auto-generated method stub
+//		
+//	}
 
 	public Keyboard getKeyboard() {
 		return keyboard;
@@ -95,4 +112,23 @@ public class KeyboardThread extends Thread implements GlobalKeyListener  {
 		this.keyboard = keyboard;
 	}
 
+	public Integer getKeyPressed() {
+		return keyPressed;
+	}
+
+	public void setKeyPressed(Integer keyPressed) {
+		this.keyPressed = keyPressed;
+	}
+
+	
+	public void cls(){
+	    try {
+
+	     if (System.getProperty("os.name").contains("Windows"))
+	         new ProcessBuilder("cmd", "/c", 
+	                  "cls").inheritIO().start().waitFor();
+	     else
+	         Runtime.getRuntime().exec("clear");
+	    } catch (IOException | InterruptedException ex) {}
+	}
 }
